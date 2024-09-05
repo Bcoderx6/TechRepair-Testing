@@ -21,7 +21,7 @@ public class InventoryServiceTest {
 
     @Test
     public void testAddItem() {
-        InventoryItem item = new InventoryItem(0, "Laptop", 10, "Supplier A");
+        InventoryItem item = new InventoryItem(id, name, quantity, price, new Date());
         inventoryService.addItem(item);
 
         List<InventoryItem> items = inventoryService.getAllItems();

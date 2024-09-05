@@ -70,22 +70,11 @@ public class ReportPanel extends JPanel {
                 String orderStatusReport = reportService.getOrderStatusReport();
                 String partsBelowReorderReport = reportService.getPartsBelowReorderLevelReport();
 
-                // Displaying the results in a customized message dialog
-                JTextArea reportTextArea = new JTextArea();
-                reportTextArea.setText(sparePartsReport + "\n\n" + orderStatusReport + "\n\n" + partsBelowReorderReport);
-                reportTextArea.setEditable(false);
-                reportTextArea.setBackground(new Color(245, 245, 245)); // Light gray background for the text
-                reportTextArea.setFont(new Font("SansSerif", Font.PLAIN, 12));
-                reportTextArea.setMargin(new Insets(10, 10, 10, 10));
-                reportTextArea.setLineWrap(true);
-                reportTextArea.setWrapStyleWord(true);
-
-                JScrollPane scrollPane = new JScrollPane(reportTextArea);
-                scrollPane.setPreferredSize(new Dimension(400, 300));
-                scrollPane.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-
-                // Customizing the message dialog
-                JOptionPane.showMessageDialog(null, scrollPane, "Monthly Report", JOptionPane.INFORMATION_MESSAGE);
+                // Displaying the results in a message dialog
+                JOptionPane.showMessageDialog(null,
+                        sparePartsReport + "\n\n" + orderStatusReport + "\n\n" + partsBelowReorderReport,
+                        "Monthly Report",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
