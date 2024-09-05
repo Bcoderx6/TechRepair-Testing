@@ -59,4 +59,3 @@ public class InventoryItem {
         this.lastOrderDate = lastOrderDate;
     }
 }
-
