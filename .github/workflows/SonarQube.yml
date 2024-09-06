@@ -1,4 +1,4 @@
-name: Unit Tests and Coverage Report
+name: SonarQube Analysis
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - feature/*
 
 jobs:
-  build:
+  analyze:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,14 +34,13 @@ jobs:
       - name: Install Maven dependencies
         run: mvn install -DskipTests
 
-      - name: Run Unit Tests
-        run: mvn test
-
-      - name: Generate Test Coverage Report
-        run: mvn jacoco:report
-
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: target/surefire-reports/
+      - name: Code Quality Check using SonarQube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_NAME }}
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.login=$SONAR_TOKEN

@@ -23,7 +23,9 @@ public class ReportService {
                 int maxQuantity = rs.getInt("max_quantity");
                 double avgQuantity = rs.getDouble("avg_quantity");
 
-                return String.format("Minimum Selling items: %d, Maximum Selling items: %d, Avg Selleing items: %.2f", minQuantity, maxQuantity, avgQuantity);
+                // Updated to display each statistic on a new line
+                return String.format("Minimum Selling items: %d\nMaximum Selling items: %d\nAvg Selling items: %.2f",
+                        minQuantity, maxQuantity, avgQuantity);
             }
         } catch (SQLException e) {
             e.printStackTrace();
